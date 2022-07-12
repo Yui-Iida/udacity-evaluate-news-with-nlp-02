@@ -1,4 +1,4 @@
-import { checkForName } from './nameChecker';
+// import { checkForName } from './nameChecker';
 import { checkURL } from './checkURL';
 
 // function handleSubmit(event) {
@@ -54,11 +54,15 @@ const result = document.querySelector('.result-section');
 //   }
 // };
 
+console.log('Loading in formHandler');
+
 const handleSubmit = async event => {
   event.preventDefault();
 
   let url = document.querySelector('#input-url').value;
-  if (checkURL(url)) {
+  if (Client.checkURL(url)) {
+    console.log('::: Form Submitted :::');
+
     postData('http://localhost:8080/add-url', { url })
       .then(data => {
         document.querySelector(
@@ -90,10 +94,10 @@ const postData = async (url = '', data = {}) => {
 // export default handleSubmit;
 
 const updateUI = async data => {
-  const innerHTML = `
+  const updateInnerHTML = `
   <div>
   <p>Article</p>
-  <img src="${data.img} alt="Picture of the news">
+   <img src="${data.img} alt="Picture of the news">
   <p>${data.headline}</P>
   <div>
   <p>${data.writer}</p>
@@ -111,5 +115,8 @@ const updateUI = async data => {
   <p>Confidence: ${data.subjectivityConfidence}</p>
   </div>  `;
 
-  result.innerHTML = innerHTML;
+  result.innerHTML = updateInnerHTML;
 };
+
+// module.exports = handleSubmit();
+export { handleSubmit };

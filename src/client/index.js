@@ -1,5 +1,6 @@
-import { checkForName } from './js/nameChecker';
+// import { checkForName } from './js/nameChecker';
 import { handleSubmit } from './js/formHandler';
+import { checkURL } from './js/checkURL';
 import './styles/resets.scss';
 import './styles/base.scss';
 import './styles/header.scss';
@@ -14,13 +15,14 @@ import './styles/footer.scss';
 // console.log(handleSubmit);
 // console.log(path);
 
-window.addEventListener('DOMContentLoaded', () => {
-  const submitBtn = document.querySelector('#submit');
+// window.addEventListener('DOMContentLoaded', () => {
+//   const submitBtn = document.querySelector('#submit');
 
-  submitBtn.addEventListener('click', () => {
-    handleSubmit();
-    // callAPI();
-  });
-});
+//   submitBtn.addEventListener('click', () => {
+//     handleSubmit();
+//     // callAPI();
+//   });
+// });
 
-export { checkForName, handleSubmit };
+// export { checkForName, handleSubmit, checkURL };
+export { handleSubmit, checkURL };

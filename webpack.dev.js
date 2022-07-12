@@ -2,8 +2,9 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyPlugin = require('copy-webpack-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // webpack checker
 // const CheckDependenciesWebpackPlugin = require('check-dependencies-webpack-plugin');
@@ -22,6 +23,10 @@ module.exports = {
   mode: 'development',
   devtool: 'source-map',
   stats: 'verbose',
+  output: {
+    libraryTarget: 'var',
+    library: 'Client',
+  },
   module: {
     rules: [
       {
@@ -74,8 +79,17 @@ module.exports = {
       cleanStaleWebpackAssets: true,
       protectWebpackAssets: false,
     }),
-    new CopyPlugin({
-      patterns: [{ from: 'src/images', to: 'images' }],
-    }),
+    // new CopyPlugin({
+    //   patterns: [{ from: 'src/images', to: 'images' }],
+    // }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: __dirname + '/src/assets/images',
+    //       to: 'assets/images',
+    //       noErrorOnMissing: true,
+    //     },
+    //   ],
+    // }),
   ],
 };

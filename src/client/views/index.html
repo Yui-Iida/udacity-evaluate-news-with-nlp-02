@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/styles/header.scss" />
     <link rel="stylesheet" href="/styles/form.scss" />
     <link rel="stylesheet" href="/styles/footer.scss" /> -->
+    <link rel="icon" type="image/x-icon" href="../../../favicon.png"
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,23 +27,25 @@
       <section>
         <div class="title">Is this article Subjective or Objective?</div>
 
-        <form class="" onsubmit="return handleSubmit(event)">
+        <form class="" onsubmit="return Client.handleSubmit(event)">
+        <!-- <form class="" onsubmit="return false"> -->
+          <!-- <form class=""> -->
           <input
             id="input-url"
             type="text"
             name="input"
             value=""
-            onblur="onBlur()"
+          
             placeholder="URL for news article"
-          />
+          >
           <input
             id="submit"
             type="submit"
             name=""
             value="Submit"
-            onclick="return handleSubmit(event)"
-            onsubmit="return handleSubmit(event)"
-          />
+            onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)"
+          >
         </form>
       </section>
 
@@ -65,18 +68,18 @@
         </div>
       </section>
 
-      <img src="../../img/chat-group.png" class="sticker" />
+      <!-- <img src="../../img/chat-group.png" class="sticker" /> -->
     </main>
 
     <footer>
       <!-- <p>This is a footer</p> -->
       &copy; 2022 by Yui Iida<br />
       Sticker by
-      <a
+      <!-- <a
         href="https://www.flaticon.com/free-stickers/people"
         title="people stickers"
         >People stickers created by Stickers - Flaticon</a
-      >
+      > -->
       <!-- <a
         href="https://www.flaticon.com/free-stickers/marketing"
         title="marketing stickers"
