@@ -26,38 +26,41 @@
     <main>
       <section>
         <div class="title">Is this article Subjective or Objective?</div>
-
-        <form class="" onsubmit="return Client.handleSubmit(event)">
+        <form class="">
+        <!-- <form class="" onsubmit="return Client.handleSubmit(event)"> -->
         <!-- <form class="" onsubmit="return false"> -->
           <!-- <form class=""> -->
+         
           <input
             id="input-url"
             type="text"
-            name="input"
-            value=""
-          
-            placeholder="URL for news article"
-          >
+            >
+            <!-- placeholder="URL for news article" -->
+            <!-- value="" -->
+            <!-- name="input" -->
           <input
             id="submit"
-            type="submit"
-            name=""
+            type="button"
             value="Submit"
-            onclick="return Client.handleSubmit(event)"
-            onsubmit="return Client.handleSubmit(event)"
-          >
+            >
+            <!-- onsubmit="handleSubmit()" -->
+            <!-- type="submit" -->
+            <!-- name="" -->
+            <!-- onclick="return Client.handleSubmit(event)" -->
+            <!-- onsubmit="return Client.handleSubmit(event)" -->
         </form>
       </section>
 
       <section class="result-section">
-        <div class="result-title">Form Results:</div>
+        <div class="result-title">Results:</div>
         <div id="results" class="results">
-          <div id="text"></div>
-          <div id="agreement"></div>
-          <div id="subjectivity"></div>
-          <div id="confidence"></div>
-          <div id="irony"></div>
-          <div id="score_tag"></div>
+          <div id="text" class="result-text">Text</div>
+          <div id="agreement" class="result-text">Agreement</div>
+          <div id="subjectivity" class="result-text">Subjectivity</div>
+          <div id="confidence" class="result-text">Confidence</div>
+          <div id="irony" class="result-text">Irony</div>
+          <div id="score_tag" class="result-text">Score</div>
+          
           <!-- <div class="result point">
             <div class="title">Point</div>
           </div>
@@ -74,7 +77,7 @@
     <footer>
       <!-- <p>This is a footer</p> -->
       &copy; 2022 by Yui Iida<br />
-      Sticker by
+  
       <!-- <a
         href="https://www.flaticon.com/free-stickers/people"
         title="people stickers"
