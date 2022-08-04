@@ -1,6 +1,8 @@
 // import { checkForName } from './nameChecker';
 // import { checkURL } from './checkURL';
 
+import { checkURL } from './checkURL';
+
 // function handleSubmit(event) {
 //   event.preventDefault();
 
@@ -22,44 +24,63 @@
 // const article = document.querySelector('.article');
 // const result = document.querySelector('.result-section');
 const url = document.querySelector('#input-url');
-const inputURL = url.value;
+
 const submitBtn = document.querySelector('#submit');
 
-console.log('Discplay by formHandler.js');
-console.log(`Why this is not shown: ${url.value}`);
+console.log('Display by formHandler.js');
 
 submitBtn.addEventListener('click', () => {
   console.log(url.value);
+  // const inputURL = url.value;
+  // console.log(inputURL);
+
+  handleSubmit();
+
+  // checkURL(inputURL);
 });
 
 // function handleSubmit(e) {
 //   // e.preventDefault();
-//   console.log(inputURL);
+//   console.log(url.value);
+//   console.log('Loading in formHandler');
 // }
 // handleSubmit();
 
-// const handleSubmit = async event => {
-//   event.preventDefault();
-//   console.log('Loading in formHandler');
+const handleSubmit = async event => {
+  // event.preventDefault();
+  console.log('Loading in formHandler');
 
-//
-//   console.log(url);
+  const inputURL = url.value;
 
-//   if (Client.checkURL(url)) {
-//     console.log('::: Form Submitted :::');
-//     console.log(`Input URL: ${url}`);
+  console.log(inputURL);
 
-//     postData('http://localhost:8080/add-url', { url })
-//       .then(data => {
-//         document.querySelector(
-//           '#polarity'
-//         ).innerHTML = `Polarity: ${data.score_tag}`;
-//       })
-//       .then(updateUI());
-//   } else {
-//     alert('Please try with a valid URL.');
-//   }
-// };
+  if (checkURL(inputURL)) {
+    console.log('::: Form Submitted :::');
+    console.log(`Input URL: ${inputURL}`);
+
+    // postData('http://localhost:8080/add-url', { inputURL }).then(data => {
+    //   console.log(data);
+    // document.querySelector(
+    //   '#score_tag'
+    // ).innerHTML = `Polarity: ${data.score_tag}`;
+
+    fetch('http://localhost:8080/meaning', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url: formText }),
+    }).then(res => res.JSON);
+
+    console.log(res);
+
+    // });
+    // .then(updateUI());
+  } else {
+    alert('Please try with a valid URL.');
+  }
+};
 
 // submitBtn.addEventListener('click', function (e) {
 //   // if (url === '') {
@@ -91,49 +112,54 @@ submitBtn.addEventListener('click', () => {
 // //   }
 // // };
 
-// const postData = async (url = '', data = {}) => {
-//   const res = await fetch(url, {
-//     method: 'POST',
-//     credentials: 'same-origin',
-//     mode: 'cors',
-//     headers: { 'Content-type': 'application/json' },
-//     body: JSON.stringify(data),
-//   });
-//   try {
-//     const newData = await res.json();
-//     return newData;
-//   } catch (error) {
-//     console.log('Error!', error);
-//   }
-// };
+const postData = async (url = '', data = {}) => {
+  const res = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    mode: 'cors',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(data),
+  });
+  console.log(data);
+  console.log(res);
 
-// // export default handleSubmit;
+  try {
+    const newData = await res.json();
+    console.log(newData);
+    return newData;
+  } catch (error) {
+    console.log('Error!', error);
+  }
+};
 
 // const updateUI = async data => {
-//   const updateInnerHTML = `
-//   <div>
-//   <p>Article</p>
-//    <img src="${data.img} alt="Picture of the news">
-//   <p>${data.headline}</P>
-//   <div>
-//   <p>${data.writer}</p>
-//   <p>${data.date}</p>
-//   <div>
-//   <p>${data.text}</p>
-//   <button>Button to link</button>
-//   </div>
+//   // <img src="${data.img} alt="Picture of the news">
 
-//   <div>
-//   <p>Point</p>
-//   <p>Polarity: ${data.polarity}</p>
-//   <p>Confidence: ${data.polarityConfidence}</p>
-//   <p>Subjectivity: ${data.subjectivity}</p>
-//   <p>Confidence: ${data.subjectivityConfidence}</p>
-//   </div>  `;
+//   const updateInnerHTML = `
+// <div>
+// <p>Article</p>
+// <p>${data.headline}</P>
+// <div>
+// <p>${data.writer}</p>
+// <p>${data.date}</p>
+// <div>
+// <p>${data.text}</p>
+// <button>Button to link</button>
+// </div>
+
+// <div>
+// <p>Point</p>
+// <p>Polarity: ${data.polarity}</p>
+// <p>Confidence: ${data.polarityConfidence}</p>
+// <p>Subjectivity: ${data.subjectivity}</p>
+// <p>Confidence: ${data.subjectivityConfidence}</p>
+// </div>  `;
 
 //   result.innerHTML = updateInnerHTML;
 // };
 
+// // export default handleSubmit;
+
 // module.exports = handleSubmit();
-// export { handleSubmit };
+export { handleSubmit };
 // export { handleSubmit, postData, updateUI };
