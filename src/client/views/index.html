@@ -25,28 +25,31 @@
 
     <main>
       <section>
-        <div class="title">Is this article Subjective or Objective?</div>
+        <p class="title">Is this article Subjective or Objective?</p>
         <form class="">
         <!-- <form class="" onsubmit="return Client.handleSubmit(event)"> -->
-        <!-- <form class="" onsubmit="return false"> -->
+          
+        <!-- <form class="" onsubmit="false"> -->
           <!-- <form class=""> -->
+            
          
           <input
             id="input-url"
             type="text"
+            placeholder="URL for news article"
             >
-            <!-- placeholder="URL for news article" -->
-            <!-- value="" -->
-            <!-- name="input" -->
+            <!-- value="" 
+            name="input" -->
+
           <input
-            id="submit"
             type="button"
+            id="submit"
+            name=""
             value="Submit"
             >
-            <!-- onsubmit="handleSubmit()" -->
+            <!-- onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)" -->
             <!-- type="submit" -->
-            <!-- name="" -->
-            <!-- onclick="return Client.handleSubmit(event)" -->
             <!-- onsubmit="return Client.handleSubmit(event)" -->
         </form>
       </section>

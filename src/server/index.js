@@ -30,16 +30,24 @@ app.listen(8080, function () {
 });
 
 app.post('/api', async (req, res) => {
-  const response = await fetch(
-    `${baseURL}?key=${API_KEY}&lang=auto&url=${req.body}`
-  );
-  try {
-    const data = await response.json();
-    res.send(data);
-    console.log(data);
-  } catch (error) {
-    console.log('error', error);
-  }
+  const apiURL = `${baseURL}key=${apiKey}$url=${req.body.url}$lang=en`;
+
+  const response = await fetch(apiURL);
+  const data = await response.json();
+  console.log(data);
+  res.send(data);
+
+  // const response = await fetch(
+  //   `${baseURL}?key=${API_KEY}&lang=en&url=${req.body.url}`
+  // );
+
+  // try {
+  //   const data = await response.json();
+  //   res.send(data);
+  //   console.log(data);
+  // } catch (error) {
+  //   console.log('error', error);
+  // }
 });
 
 // app.get('/test', function (req, res) {
