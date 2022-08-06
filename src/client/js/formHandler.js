@@ -24,9 +24,7 @@ import { checkURL } from './checkURL';
 // const article = document.querySelector('.article');
 // const result = document.querySelector('.result-section');
 const url = document.querySelector('#input-url');
-
 const submitBtn = document.querySelector('#submit');
-
 console.log('Display by formHandler.js');
 
 submitBtn.addEventListener('click', () => {
@@ -35,7 +33,6 @@ submitBtn.addEventListener('click', () => {
   // console.log(inputURL);
 
   handleSubmit();
-
   // checkURL(inputURL);
 });
 
@@ -51,29 +48,13 @@ const handleSubmit = async event => {
   console.log('Loading in formHandler');
 
   const inputURL = url.value;
-
   console.log(inputURL);
 
   if (checkURL(inputURL)) {
     console.log('::: Form Submitted :::');
     console.log(`Input URL: ${inputURL}`);
 
-    // postData('http://localhost:8080/add-url', { inputURL }).then(data => {
-    //   console.log(data);
-    // document.querySelector(
-    //   '#score_tag'
-    // ).innerHTML = `Polarity: ${data.score_tag}`;
-
-    fetch('http://localhost:8080/meaning', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url: formText }),
-    }).then(res => res.JSON);
-
-    console.log(res);
+    postData('http://localhost:8080/api', { url: inputURL });
 
     // });
     // .then(updateUI());
@@ -81,6 +62,40 @@ const handleSubmit = async event => {
     alert('Please try with a valid URL.');
   }
 };
+
+// fetch('http://localhost:8080/meaning', {
+//   method: 'POST',
+//   credentials: 'same-origin',
+//   headers: {
+//     'Content-Type': 'application/json',
+//   },
+//   // body: JSON.stringify({ url: formText }),
+
+//   body: JSON.stringify({ url: formText }),
+// }).then(res => res.JSON);
+
+// from meaning cloud website
+// const formdata = new FormData();
+// formdata.append('key', 'YOUR API KEY');
+// formdata.append('txt', 'YOUR TEXT HERE');
+// formdata.append('model', 'MODEL HERE');
+
+// const requestOptions = {
+//   method: 'POST',
+//   body: formdata,
+//   redirect: 'follow',
+// };
+
+// const response = fetch(
+//   'https://api.meaningcloud.com/sentiment-2.1',
+//   requestOptions
+// )
+//   .then(response => ({
+//     status: response.status,
+//     body: response.json(),
+//   }))
+//   .then(({ status, body }) => console.log(status, body))
+//   .catch(error => console.log('error', error));
 
 // submitBtn.addEventListener('click', function (e) {
 //   // if (url === '') {
@@ -120,7 +135,7 @@ const postData = async (url = '', data = {}) => {
     headers: { 'Content-type': 'application/json' },
     body: JSON.stringify(data),
   });
-  console.log(data);
+  // console.log(data);
   console.log(res);
 
   try {

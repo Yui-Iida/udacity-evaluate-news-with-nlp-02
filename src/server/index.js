@@ -29,18 +29,19 @@ app.listen(8080, function () {
   console.log('Example app listening on port 8080!');
 });
 
-app.post('/article', async (req, res) => {
+app.post('/api', async (req, res) => {
   const response = await fetch(
     `${baseURL}?key=${API_KEY}&lang=auto&url=${req.body}`
   );
   try {
     const data = await response.json();
     res.send(data);
+    console.log(data);
   } catch (error) {
     console.log('error', error);
   }
 });
 
-app.get('/test', function (req, res) {
-  res.send(mockAPIResponse);
-});
+// app.get('/test', function (req, res) {
+//   res.send(mockAPIResponse);
+// });
