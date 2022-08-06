@@ -33,6 +33,7 @@ submitBtn.addEventListener('click', () => {
   // console.log(inputURL);
 
   handleSubmit();
+
   // checkURL(inputURL);
 });
 
@@ -43,12 +44,12 @@ submitBtn.addEventListener('click', () => {
 // }
 // handleSubmit();
 
-const handleSubmit = async event => {
+// const handleSubmit = async event => {
+const handleSubmit = () => {
+  // console.log('Loading in formHandler');
   // event.preventDefault();
-  console.log('Loading in formHandler');
-
   const inputURL = url.value;
-  console.log(inputURL);
+  // console.log(inputURL);
 
   if (checkURL(inputURL)) {
     console.log('::: Form Submitted :::');
@@ -133,10 +134,20 @@ const postData = async (url = '', data = {}) => {
     credentials: 'same-origin',
     mode: 'cors',
     headers: { 'Content-type': 'application/json' },
-    body: JSON.stringify(data),
+    // body: JSON.stringify(data),
+    // headers: {
+    //   'Content-Type': 'text/plain',
+    // },
+    body: JSON.stringify({ url: data.value }),
   });
+
+  // console.log(res);
+  // const newData = await res.json();
+
+  // console.log(newData);
+  // return newData;
+
   // console.log(data);
-  console.log(res);
 
   try {
     const newData = await res.json();
