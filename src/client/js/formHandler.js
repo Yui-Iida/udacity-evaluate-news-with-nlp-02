@@ -27,12 +27,12 @@ const url = document.querySelector('#input-url');
 const submitBtn = document.querySelector('#submit');
 console.log('Display by formHandler.js');
 
-submitBtn.addEventListener('click', () => {
-  console.log(url.value);
+submitBtn.addEventListener('click', event => {
+  console.log('Clicked!');
   // const inputURL = url.value;
   // console.log(inputURL);
 
-  handleSubmit();
+  handleSubmit(event);
 
   // checkURL(inputURL);
 });
@@ -45,17 +45,43 @@ submitBtn.addEventListener('click', () => {
 // handleSubmit();
 
 // const handleSubmit = async event => {
-const handleSubmit = () => {
+const handleSubmit = async event => {
   // console.log('Loading in formHandler');
-  // event.preventDefault();
+  event.preventDefault();
   const inputURL = url.value;
-  // console.log(inputURL);
 
   if (checkURL(inputURL)) {
     console.log('::: Form Submitted :::');
     console.log(`Input URL: ${inputURL}`);
 
-    postData('http://localhost:8080/api', { url: inputURL });
+    // postData('http://localhost:8080/api', { url: inputURL });
+    // postData('http://localhost:8080/api', {});
+    await fetch('http://localhost:8080/api', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ url: inputURL }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log(res);
+        // const stringified = JSON.stringify(res);
+        // console.log(stringified);
+        // const parsedObj = JSON.parse(stringified);
+        // console.log(parsedObj);
+      });
+    // GET THIS ERROR => Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
+
+    // .then(function (res) {
+    //   document.getElementById('polarity').innerHTML = res.polarity;
+    //   document.getElementById('subjectivity').innerHTML = res.subjectivity;
+    //   document.getElementById('polar-conf').innerHTML =
+    //     res.polarity_confidence;
+    //   document.getElementById('subj-conf').innerHTML =
+    //     res.subjectivity_confidence;
+    // });
 
     // });
     // .then(updateUI());
@@ -128,35 +154,35 @@ const handleSubmit = () => {
 // //   }
 // // };
 
-const postData = async (url = '', data = {}) => {
-  const res = await fetch(url, {
-    method: 'POST',
-    credentials: 'same-origin',
-    mode: 'cors',
-    headers: { 'Content-type': 'application/json' },
-    // body: JSON.stringify(data),
-    // headers: {
-    //   'Content-Type': 'text/plain',
-    // },
-    body: JSON.stringify({ url: data.value }),
-  });
+// const postData = async (url = '', data = {}) => {
+//   const req = await fetch(url, {
+//     method: 'POST',
+//     credentials: 'same-origin',
+//     mode: 'cors',
+//     headers: { 'Content-type': 'application/json' },
+//     body: JSON.stringify(data),
+//     // headers: {
+//     //   'Content-Type': 'text/plain',
+//     // },
+//     // body: JSON.stringify({ url: data.value }),
+//   });
 
-  // console.log(res);
-  // const newData = await res.json();
+//   // console.log(res.json());
+//   // const newData = await res.json();
 
-  // console.log(newData);
-  // return newData;
+//   // console.log(newData);
+//   // return newData;
 
-  // console.log(data);
+//   // console.log(data);
 
-  try {
-    const newData = await res.json();
-    console.log(newData);
-    return newData;
-  } catch (error) {
-    console.log('Error!', error);
-  }
-};
+//   try {
+//     const newData = await req.json();
+//     console.log(newData);
+//     return newData;
+//   } catch (error) {
+//     console.log('Error!', error);
+//   }
+// };
 
 // const updateUI = async data => {
 //   // <img src="${data.img} alt="Picture of the news">
