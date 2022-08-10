@@ -54,24 +54,23 @@ const handleSubmit = async event => {
     console.log('::: Form Submitted :::');
     console.log(`Input URL: ${inputURL}`);
 
-    // postData('http://localhost:8080/api', { url: inputURL });
+    postData('http://localhost:8080/api', { url: inputURL });
     // postData('http://localhost:8080/api', {});
-    await fetch('http://localhost:8080/api', {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ url: inputURL }),
-    })
-      .then(res => res.json())
-      .then(res => {
-        console.log(res);
-        // const stringified = JSON.stringify(res);
-        // console.log(stringified);
-        // const parsedObj = JSON.parse(stringified);
-        // console.log(parsedObj);
-      });
+    // await fetch('http://localhost:8080/api', {
+    //   method: 'POST',
+    //   credentials: 'same-origin',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ url: inputURL }),
+    // }).then(res => res.json());
+    // .then(res => {
+    //   console.log(res);
+    //   // const stringified = JSON.stringify(res);
+    //   // console.log(stringified);
+    //   const parsedObj = JSON.parse(res);
+    //   console.log(parsedObj);
+    // });
     // GET THIS ERROR => Uncaught (in promise) SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON
 
     // .then(function (res) {
@@ -154,35 +153,36 @@ const handleSubmit = async event => {
 // //   }
 // // };
 
-// const postData = async (url = '', data = {}) => {
-//   const req = await fetch(url, {
-//     method: 'POST',
-//     credentials: 'same-origin',
-//     mode: 'cors',
-//     headers: { 'Content-type': 'application/json' },
-//     body: JSON.stringify(data),
-//     // headers: {
-//     //   'Content-Type': 'text/plain',
-//     // },
-//     // body: JSON.stringify({ url: data.value }),
-//   });
+const postData = async (url = '', data = {}) => {
+  const req = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
+    mode: 'cors',
+    headers: { 'Content-type': 'application/json' },
+    body: JSON.stringify(data),
+    // headers: {
+    //   'Content-Type': 'text/plain',
+    // },
+    // body: JSON.stringify({ url: data.value }),
+  });
 
-//   // console.log(res.json());
-//   // const newData = await res.json();
+  console.log(req);
+  //   // console.log(res.json());
+  //   // const newData = await res.json();
 
-//   // console.log(newData);
-//   // return newData;
+  //   // console.log(newData);
+  //   // return newData;
 
-//   // console.log(data);
+  //   // console.log(data);
 
-//   try {
-//     const newData = await req.json();
-//     console.log(newData);
-//     return newData;
-//   } catch (error) {
-//     console.log('Error!', error);
-//   }
-// };
+  try {
+    const newData = await req.json();
+    console.log(newData);
+    return newData;
+  } catch (error) {
+    console.log('Error!', error);
+  }
+};
 
 // const updateUI = async data => {
 //   // <img src="${data.img} alt="Picture of the news">
