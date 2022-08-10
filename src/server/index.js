@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 
 const app = express();
 app.use(cors());
+app.use(bodyParser.json());
 app.use(express.static('dist'));
 console.log(__dirname);
 
@@ -17,7 +18,7 @@ console.log(`your api key is ${API_KEY}`);
 
 app.use(bodyParser.text());
 
-const baseURL = 'http://api.meaningcloud.com/sentiment-2.1';
+const baseURL = 'http://api.meaningcloud.com/sentiment-2.1?';
 
 app.get('/', function (req, res) {
   // res.sendFile('dist/index.html')
@@ -31,11 +32,20 @@ app.listen(8080, function () {
 
 app.post('/api', async (req, res) => {
   const apiURL = `${baseURL}key=${apiKey}$url=${req.body.url}$lang=en`;
+  console.log(`api URL is: ${apiURL}`);
 
   const response = await fetch(apiURL);
   const data = await response.json();
   console.log(data);
   res.send(data);
+
+  // try {
+  //   const data = await response.json();
+  //   console.log(data);
+  //   res.send(data);
+  // } catch (error) {
+  //   console.log(`ERROR in server: ${error.message}`);
+  // }
 
   // const response = await fetch(
   //   `${baseURL}?key=${API_KEY}&lang=en&url=${req.body.url}`
